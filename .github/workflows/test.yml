@@ -1,0 +1,20 @@
+name: My First Github Action 3
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the other repo to pass
+        run: >
+          curl
+          -X POST
+          -H "Authorization: token v1.fc3430610b95b1c83fcd219252e462fb9839830a"
+          -H "Accept: application/vnd.github.everest-preview+json"
+          -H "Content-Type: application/json"
+          https://api.github.com/repos/NathanielRN-Org/opentelemetry-python/check-runs
+          --data '{"name": "nathan_custom_run", "head_sha":"2f8c0d1c094befb4c46f070de9e41d87d2a9bb9b", status: "in_progress"}'
+
+# curl -X POST -H "Authorization: token ${{ secrets.INSTALLATION_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/NathanielRN/github-actions-target/check-runs --data '{"name": "docs", "head_sha":"e23d3e9e449e675c724a0d2bf9a0d816f05aa083"}'
